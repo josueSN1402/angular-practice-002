@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'pa-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss'],
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
   titulo: string = 'Lista de Cursos!';
   anchoImagen: string = '40px';
   cursos: any[] = [
@@ -39,6 +39,12 @@ export class CoursesComponent {
       imageUrl: 'assets/images/angular.png',
     },
   ];
+
+  constructor() {
+    
+  }
+
+  ngOnInit() {}
 
   editarCurso(curso: any) {
     console.log('Edit: ', curso);

@@ -1,6 +1,13 @@
+<div>
+  <ul>
+    <li *ngFor="let curso of cursos">{{curso.name}}</li>
+  </ul>
+</div>
+
+
 <div class="card">
   <div class="card-header">{{ titulo }}</div>
-  <div class="card-body">
+  <div *ngIf="cursos && cursos.length > 0" class="card-body">
     <div>
       <table class="table">
         <thead>
@@ -14,90 +21,29 @@
             <th scope="col">Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              <img
-                [src]="cursos[0].imageUrl"
-                [style.width]="anchoImagen"
-                [title]="'TypeScript'"
-              />
-            </td>
-            <td>{{ cursos[0].name }}</td>
-            <td>{{ cursos[0].descripcion }}</td>
-            <td>{{ cursos[0].startDate }}</td>
-            <td>{{ cursos[0].price }}</td>
-            <td>{{ cursos[0].rating }}</td>
-            <td>
-              <span
-                style="float: left"
-                (click)="eliminarCurso(cursos[0])"
-                (mouseover)="onMouseover($event)"
-                (dblclick)="onDoubleclick($event)"
-              >
-                <i class="fa fa-edit" style="print-color-adjust: exact"></i>
-              </span>
-              <span style="float: right">
-                <i class="fa fa-trash" style="print-color-adjust: exact"></i>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                [src]="cursos[1].imageUrl"
-                [style.width]="anchoImagen"
-                [title]="'Angular'"
-              />
-            </td>
-            <td>{{ cursos[1].name }}</td>
-            <td>{{ cursos[1].descripcion }}</td>
-            <td>{{ cursos[1].startDate }}</td>
-            <td>{{ cursos[1].price }}</td>
-            <td>{{ cursos[1].rating }}</td>
-            <td>
-              <span
-                style="float: left"
-                (click)="eliminarCurso(cursos[1])"
-                (mouseover)="onMouseover($event)"
-                (dblclick)="onDoubleclick($event)"
-              >
-                <i class="fa fa-edit" style="print-color-adjust: exact"></i>
-              </span>
-              <span style="float: right">
-                <i class="fa fa-trash" style="print-color-adjust: exact"></i>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                [src]="cursos[2].imageUrl"
-                [style.width]="anchoImagen"
-                [title]="'Angular'"
-              />
-            </td>
-            <td>{{ cursos[2].name }}</td>
-            <td>{{ cursos[2].descripcion }}</td>
-            <td>{{ cursos[2].startDate }}</td>
-            <td>{{ cursos[2].price }}</td>
-            <td>{{ cursos[2].rating }}</td>
-            <td>
-              <span
-                style="float: left"
-                (click)="eliminarCurso(cursos[2])"
-                (mouseover)="onMouseover($event)"
-                (dblclick)="onDoubleclick($event)"
-              >
-                <i class="fa fa-edit" style="print-color-adjust: exact"></i>
-              </span>
-              <span style="float: right">
-                <i class="fa fa-trash" style="print-color-adjust: exact"></i>
-              </span>
-            </td>
-          </tr>
+        <tbody>            <tr *ngFor="let curso of cursos">
+                <td>
+                  <img [src]="curso.imageUrl"
+                       [style.width]="anchoImagen"
+                       [title]="curso.name">
+                </td>
+                <td>{{curso.name}}</td>
+                <td>{{curso.description}}</td>
+                <td>{{curso.startDate | date: 'fullDate'}}</td>
+                <td>{{curso.price | currency : 'Bs' }}</td>
+                <td>{{curso.rating}}</td>
+                <td>
+                  <pa-course-action [curso]="curso"
+                                    (edit)="onEditCurso($event)"
+                                    (delete)="onDeleteCurso($event)">
+                  </pa-course-action>
+                </td>
+            </tr>
         </tbody>
       </table>
     </div>
+  </div>
+  <div *ngIf="!cursos || cursos.length === 0" class="alert alert-info" role="alert">
+    No existen cursos disponibles. Intente más tarde.
   </div>
 </div>
