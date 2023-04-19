@@ -39,4 +39,20 @@ export class CoursesComponent {
       imageUrl: 'assets/images/angular.png',
     },
   ];
+
+  editarCurso(curso: any) {
+    console.log('Edit: ', curso);
+  }
+
+  eliminarCurso(curso: any) {
+    console.log('Eliminar: ', curso);
+  }
+
+  onMouseover(event: any) {
+    console.log('Mouse Over: ', event);
+  }
+
+  onDoubleclick(event: any) {
+    console.log('Double Click: ', event);
+  }
 }
