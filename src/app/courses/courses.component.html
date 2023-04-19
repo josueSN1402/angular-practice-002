@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header">Lista de Cursos</div>
+  <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
     <div>
       <table class="table">
@@ -16,21 +16,48 @@
         </thead>
         <tbody>
           <tr>
-            <td>Icono</td>
-            <td>Angular</td>
-            <td>Angular Desde Cero</td>
-            <td>Setiembre 29, 2019</td>
-            <td>29.99</td>
-            <td>4.9</td>
+            <td>
+              <img
+                [src]="cursos[0].imageUrl"
+                [style.width]="anchoImagen"
+                [title]="'TypeScript'"
+              />
+            </td>
+            <td>{{ cursos[0].name }}</td>
+            <td>{{ cursos[0].descripcion }}</td>
+            <td>{{ cursos[0].startDate }}</td>
+            <td>{{ cursos[0].price }}</td>
+            <td>{{ cursos[0].rating }}</td>
             <td></td>
           </tr>
           <tr>
-            <td>Icono</td>
-            <td>TypeScript</td>
-            <td>TypeScript Desde Cero</td>
-            <td>Agosto 20, 2019</td>
-            <td>29.99</td>
-            <td>4.9</td>
+            <td>
+              <img
+                [src]="cursos[1].imageUrl"
+                [style.width]="anchoImagen"
+                [title]="'Angular'"
+              />
+            </td>
+            <td>{{ cursos[1].name }}</td>
+            <td>{{ cursos[1].descripcion }}</td>
+            <td>{{ cursos[1].startDate }}</td>
+            <td>{{ cursos[1].price }}</td>
+            <td>{{ cursos[1].rating }}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                [src]="cursos[2].imageUrl"
+                [style.width]="anchoImagen"
+                [title]="'Angular'"
+              />
+            </td>
+            <td>{{ cursos[2].name }}</td>
+            <td>{{ cursos[2].descripcion }}</td>
+            <td>{{ cursos[2].startDate }}</td>
+            <td>{{ cursos[2].price }}</td>
+            <td>{{ cursos[2].rating }}</td>
             <td></td>
           </tr>
         </tbody>
