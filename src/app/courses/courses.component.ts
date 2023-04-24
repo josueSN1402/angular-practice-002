@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from '../curso';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pa-courses',
@@ -41,12 +42,14 @@ export class CoursesComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
   onEditCurso(curso: Curso) {
     console.log('[Courses] Edit', curso);
+    this.router.navigate([`course/${curso.id}`]);
+    // Redirección
   }
 
   onDeleteCurso(curso: Curso) {
