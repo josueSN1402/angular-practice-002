@@ -29,7 +29,11 @@
             <td>{{ curso.price | currency : "S/ " }}</td>
             <td>{{ curso.rating }}</td>
             <td>
-              <pa-course-action [curso]="curso"></pa-course-action>
+              <pa-course-action
+                [curso]="curso"
+                (edit)="onEditCurso($event)"
+                (delete)="onDeleteCurso($event)"
+              ></pa-course-action>
             </td>
           </tr>
         </tbody>

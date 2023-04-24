@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Curso } from '../curso';
 
 @Component({
   selector: 'pa-courses',
@@ -43,4 +44,13 @@ export class CoursesComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  onEditCurso(curso: Curso) {
+    console.log('[Courses] Edit', curso);
+  }
+
+  onDeleteCurso(curso: Curso) {
+    console.log('[Courses] Delete', curso);
+    this.cursos = this.cursos.filter((c: Curso) => c.id !== curso.id);
+  }
 }
