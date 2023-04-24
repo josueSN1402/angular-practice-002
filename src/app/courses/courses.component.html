@@ -15,77 +15,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let curso of cursos">
             <td>
               <img
-                [src]="cursos[0].imageUrl"
+                [src]="curso.imageUrl"
                 [style.width]="anchoImagen"
-                [title]="'TypeScript'"
+                [title]="'curso.name'"
               />
             </td>
-            <td>{{ cursos[0].name }}</td>
-            <td>{{ cursos[0].descripcion }}</td>
-            <td>{{ cursos[0].startDate }}</td>
-            <td>{{ cursos[0].price }}</td>
-            <td>{{ cursos[0].rating }}</td>
+            <td>{{ curso.name }}</td>
+            <td>{{ curso.descripcion }}</td>
+            <td>{{ curso.startDate | date : "fullDate" }}</td>
+            <td>{{ curso.price | currency : "S/ " }}</td>
+            <td>{{ curso.rating }}</td>
             <td>
               <span
                 style="float: left"
-                (click)="eliminarCurso(cursos[0])"
-                (mouseover)="onMouseover($event)"
-                (dblclick)="onDoubleclick($event)"
-              >
-                <i class="fa fa-edit" style="print-color-adjust: exact"></i>
-              </span>
-              <span style="float: right">
-                <i class="fa fa-trash" style="print-color-adjust: exact"></i>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                [src]="cursos[1].imageUrl"
-                [style.width]="anchoImagen"
-                [title]="'Angular'"
-              />
-            </td>
-            <td>{{ cursos[1].name }}</td>
-            <td>{{ cursos[1].descripcion }}</td>
-            <td>{{ cursos[1].startDate }}</td>
-            <td>{{ cursos[1].price }}</td>
-            <td>{{ cursos[1].rating }}</td>
-            <td>
-              <span
-                style="float: left"
-                (click)="eliminarCurso(cursos[1])"
-                (mouseover)="onMouseover($event)"
-                (dblclick)="onDoubleclick($event)"
-              >
-                <i class="fa fa-edit" style="print-color-adjust: exact"></i>
-              </span>
-              <span style="float: right">
-                <i class="fa fa-trash" style="print-color-adjust: exact"></i>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                [src]="cursos[2].imageUrl"
-                [style.width]="anchoImagen"
-                [title]="'Angular'"
-              />
-            </td>
-            <td>{{ cursos[2].name }}</td>
-            <td>{{ cursos[2].descripcion }}</td>
-            <td>{{ cursos[2].startDate }}</td>
-            <td>{{ cursos[2].price }}</td>
-            <td>{{ cursos[2].rating }}</td>
-            <td>
-              <span
-                style="float: left"
-                (click)="eliminarCurso(cursos[2])"
+                (click)="eliminarCurso(curso)"
                 (mouseover)="onMouseover($event)"
                 (dblclick)="onDoubleclick($event)"
               >

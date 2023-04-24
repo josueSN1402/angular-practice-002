@@ -12,7 +12,7 @@ export class CoursesComponent implements OnInit {
     {
       id: 1,
       name: 'TypeScript Desde Cero',
-      startDate: 'Setiembre 29, 2019',
+      startDate: 'September 29, 2019',
       descripcion:
         'Llva JavaScript al siguiente nivel con tipado estático y programación orientado a objetos',
       price: 25.99,
@@ -22,7 +22,7 @@ export class CoursesComponent implements OnInit {
     {
       id: 2,
       name: 'Angular Desde Cero',
-      startDate: 'Setiembre 29, 2019',
+      startDate: 'September 4, 2019',
       descripcion: 'Aprende el framework con más demanda del mercado',
       price: 29.99,
       rating: '4.7',
@@ -40,9 +40,7 @@ export class CoursesComponent implements OnInit {
     },
   ];
 
-  constructor() {
-    
-  }
+  constructor() {}
 
   ngOnInit() {}
 
