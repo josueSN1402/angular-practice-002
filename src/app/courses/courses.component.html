@@ -29,17 +29,7 @@
             <td>{{ curso.price | currency : "S/ " }}</td>
             <td>{{ curso.rating }}</td>
             <td>
-              <span
-                style="float: left"
-                (click)="eliminarCurso(curso)"
-                (mouseover)="onMouseover($event)"
-                (dblclick)="onDoubleclick($event)"
-              >
-                <i class="fa fa-edit" style="print-color-adjust: exact"></i>
-              </span>
-              <span style="float: right">
-                <i class="fa fa-trash" style="print-color-adjust: exact"></i>
-              </span>
+              <pa-course-action [curso]="curso"></pa-course-action>
             </td>
           </tr>
         </tbody>

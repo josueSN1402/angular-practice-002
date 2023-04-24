@@ -43,20 +43,4 @@ export class CoursesComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-
-  editarCurso(curso: any) {
-    console.log('Edit: ', curso);
-  }
-
-  eliminarCurso(curso: any) {
-    console.log('Eliminar: ', curso);
-  }
-
-  onMouseover(event: any) {
-    console.log('Mouse Over: ', event);
-  }
-
-  onDoubleclick(event: any) {
-    console.log('Double Click: ', event);
-  }
 }
