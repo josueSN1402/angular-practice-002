@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseActionComponent } from './course-action/course-action.component';
 import { CourseEditComponent } from './course-edit/course-edit.component';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
-  declarations: [AppComponent, CoursesComponent, CourseActionComponent, CourseEditComponent],
+  declarations: [AppComponent, CoursesComponent, CourseActionComponent, CourseEditComponent, NavbarComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
