@@ -4,45 +4,6 @@
   </div>
   <pa-navbar [cursos]="cursos"></pa-navbar>
   <div *ngIf="cursos && cursos.length > 0" class="card-body">
-    <div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Logo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Fecha de Inicio</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let curso of cursos">
-            <td>
-              <img
-                [src]="curso.imageUrl"
-                [style.width]="anchoImagen"
-                [title]="'curso.name'"
-              />
-            </td>
-            <td>{{ curso.name }}</td>
-            <td>{{ curso.description }}</td>
-            <td>{{ curso.startDate | date : "fullDate" }}</td>
-            <td>{{ curso.price | currency : "S/ " }}</td>
-            <td>{{ curso.rating }}</td>
-            <td>
-              <pa-course-action
-                [curso]="curso"
-                (edit)="onEditCurso($event)"
-                (delete)="onDeleteCurso($event)"
-              ></pa-course-action>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
   <div
     *ngIf="!cursos || cursos.length === 0"
     class="alert alert-info"

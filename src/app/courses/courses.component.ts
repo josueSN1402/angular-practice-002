@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Curso } from '../curso';
 import { Router } from '@angular/router';
 
@@ -10,6 +16,7 @@ import { Router } from '@angular/router';
 export class CoursesComponent implements OnInit {
   titulo: string = 'Lista de Cursos!';
   anchoImagen: string = '40px';
+
   cursos: any[] = [
     {
       id: 1,
