@@ -39,6 +39,7 @@
             </li>
           </ul>
         </li>
+        <span>{{ textoFiltro }}</span>
       </ul>
       <form class="d-flex">
         <input
@@ -47,6 +48,8 @@
           type="search"
           placeholder="Filtrar por"
           aria-label="Search"
+          [(ngModel)]="textoFiltro"
+          name="filtro"
         />
         <button class="btn btn-outline-light" type="submit">Search</button>
       </form>

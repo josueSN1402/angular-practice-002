@@ -15,12 +15,14 @@ import {
 export class NavbarComponent implements OnInit, AfterViewInit {
   @Input() cursos: any;
 
-  @ViewChild('filtro')
+  @ViewChild('filtro', { static: false })
   filtro!: ElementRef;
+
+  textoFiltro: string = '';
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.filtro.nativeElement.value = 'Angular';
+    this.filtro.nativeElement.value = '';
   }
 }
