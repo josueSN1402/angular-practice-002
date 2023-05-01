@@ -4,14 +4,9 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseEditComponent } from './course-edit/course-edit.component';
 
 const routes: Routes = [
-  {
-    path: 'courses',
-    component: CoursesComponent,
-  },
-  {
-    path: 'course/:id',
-    component: CourseEditComponent,
-  },
+  { path: '', redirectTo: '/courses', pathMatch: 'full' },
+  { path: 'courses', component: CoursesComponent },
+  { path: 'course/:id', component: CourseEditComponent },
 ];
 
 @NgModule({

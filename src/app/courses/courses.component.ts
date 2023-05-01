@@ -48,7 +48,9 @@ export class CoursesComponent implements OnInit {
 
   onEditCurso(curso: Curso) {
     console.log('[Courses] Edit', curso);
-    this.router.navigate([`course/${curso.id}`]);
+    // this.router.navigate([`course/${curso.id}`]);
+    const id = curso.id;
+    this.router.navigate(['/course', id]);
     // Redirección
   }
 
