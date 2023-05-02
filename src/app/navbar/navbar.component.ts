@@ -30,9 +30,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.cursos = t ? this.filtrarCursos(t) : this.coursesService.getCourses();
   }
 
-  constructor(private coursesService: CoursesService) {
-    // this.cursos = this.coursesService.getCourses();
-  }
+  constructor(private coursesService: CoursesService) {}
 
   get textoFiltro() {
     return this._textoFiltro;
@@ -44,6 +42,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.filtro.nativeElement.value = '';
+    this.filtro.nativeElement.addEventListener('input', () => {
+      this.searchTextChanged();
+    });
   }
 
   filtrarCursos(text: string) {
