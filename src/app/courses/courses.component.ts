@@ -18,7 +18,8 @@ export class CoursesComponent implements OnInit {
   titulo: string = 'Lista de Cursos!';
   anchoImagen: string = '40px';
 
-  cursos: any[];
+  cursos: any[] = this.coursesService.getCourses();
+  textoFiltro: string = '';
 
   constructor(private router: Router, private coursesService: CoursesService) {
     this.cursos = this.coursesService.getCourses();
@@ -28,14 +29,22 @@ export class CoursesComponent implements OnInit {
 
   onEditCurso(curso: Curso) {
     console.log('[Courses] Edit', curso);
-    // this.router.navigate([`course/${curso.id}`]);
     const id = curso.id;
     this.router.navigate(['/course', id]);
-    // Redirección
   }
 
   onDeleteCurso(curso: Curso) {
     console.log('[Courses] Delete', curso);
     this.cursos = this.cursos.filter((c: Curso) => c.id !== curso.id);
+  }
+
+  onSearchTextChanged(text: string) {
+    this.textoFiltro = text;
+    this.cursos = this.coursesService.getCourses().filter((curso) => {
+      return (
+        curso.name.toLowerCase().includes(text.toLowerCase()) ||
+        curso.description.toLowerCase().includes(text.toLowerCase())
+      );
+    });
   }
 }

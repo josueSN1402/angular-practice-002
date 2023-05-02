@@ -4,7 +4,9 @@ import {
   ElementRef,
   Input,
   OnInit,
+  EventEmitter,
   ViewChild,
+  Output,
 } from '@angular/core';
 import { CoursesService } from '../courses.service';
 import { Curso } from '../curso';
@@ -15,7 +17,8 @@ import { Curso } from '../curso';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  @Input() cursos: any;
+  @Input() cursos: Curso[] = [];
+  @Output() onTextChanged = new EventEmitter<string>();
 
   @ViewChild('filtro', { static: false })
   filtro!: ElementRef;
@@ -28,14 +31,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private coursesService: CoursesService) {
-    this.cursos = this.coursesService.getCourses();
+    // this.cursos = this.coursesService.getCourses();
   }
 
   get textoFiltro() {
     return this._textoFiltro;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cursos = this.coursesService.getCourses();
+  }
 
   ngAfterViewInit() {
     this.filtro.nativeElement.value = '';
@@ -46,5 +51,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       (curso: Curso) =>
         curso.name.toLowerCase().indexOf(text.toLowerCase()) >= 0
     );
+  }
+
+  searchTextChanged() {
+    this.onTextChanged.emit(this._textoFiltro);
   }
 }
