@@ -18,14 +18,18 @@ export class CoursesComponent implements OnInit {
   titulo: string = 'Lista de Cursos!';
   anchoImagen: string = '40px';
 
-  cursos: any[] = this.coursesService.getCourses();
+  cursos: Curso[] = [];
   textoFiltro: string = '';
 
   constructor(private router: Router, private coursesService: CoursesService) {
-    this.cursos = this.coursesService.getCourses();
+    // this.cursos = this.coursesService.getCourses();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.coursesService
+      .getCourses()
+      .subscribe((cursos: Curso[]) => (this.cursos = cursos));
+  }
 
   onEditCurso(curso: Curso) {
     console.log('[Courses] Edit', curso);
@@ -40,7 +44,7 @@ export class CoursesComponent implements OnInit {
 
   onSearchTextChanged(text: string) {
     this.textoFiltro = text;
-    this.cursos = this.coursesService.getCourses().filter((curso) => {
+    this.cursos = this.cursos.filter((curso) => {
       return (
         curso.name.toLowerCase().includes(text.toLowerCase()) ||
         curso.description.toLowerCase().includes(text.toLowerCase())
