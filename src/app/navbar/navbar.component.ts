@@ -18,7 +18,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-  private cursosInit: Curso[] = [];
   @Input() cursos: Curso[] = [];
   @Output() onTextChanged = new EventEmitter<string>();
 
@@ -29,7 +28,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   set textoFiltro(t: string) {
     this._textoFiltro = t;
-  
+
     if (t) {
       this.cursos = this.filtrarCursos(t);
     } else {
@@ -49,7 +48,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.coursesService
       .getCourses()
       .subscribe((cursos: Curso[]) => (this.cursos = cursos));
-    this.cursos = this.cursosInit;
   }
 
   ngAfterViewInit() {

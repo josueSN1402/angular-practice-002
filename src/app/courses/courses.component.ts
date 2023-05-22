@@ -44,7 +44,7 @@ export class CoursesComponent implements OnInit {
 
   onSearchTextChanged(text: string) {
     this.textoFiltro = text;
-  
+
     if (!text) {
       this.coursesService.getCourses().subscribe((cursos: Curso[]) => {
         this.cursos = cursos;
