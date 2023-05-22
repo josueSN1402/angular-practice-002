@@ -29,12 +29,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   set textoFiltro(t: string) {
     this._textoFiltro = t;
-    this.cursos = t ? this.filtrarCursos(t) : [];
-
-    if (this.cursos.length === 0) {
-      this.coursesService
-        .getCourses()
-        .subscribe((cursos: Curso[]) => (this.cursos = cursos));
+  
+    if (t) {
+      this.cursos = this.filtrarCursos(t);
+    } else {
+      this.coursesService.getCourses().subscribe((cursos: Curso[]) => {
+        this.cursos = cursos;
+      });
     }
   }
 

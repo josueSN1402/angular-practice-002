@@ -44,11 +44,18 @@ export class CoursesComponent implements OnInit {
 
   onSearchTextChanged(text: string) {
     this.textoFiltro = text;
-    this.cursos = this.cursos.filter((curso) => {
-      return (
-        curso.name.toLowerCase().includes(text.toLowerCase()) ||
-        curso.description.toLowerCase().includes(text.toLowerCase())
-      );
-    });
+  
+    if (!text) {
+      this.coursesService.getCourses().subscribe((cursos: Curso[]) => {
+        this.cursos = cursos;
+      });
+    } else {
+      this.cursos = this.cursos.filter((curso) => {
+        return (
+          curso.name.toLowerCase().includes(text.toLowerCase()) ||
+          curso.description.toLowerCase().includes(text.toLowerCase())
+        );
+      });
+    }
   }
 }
