@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent {
   @Input() cursos: Curso[] = [];
   @Output() onTextChanged = new EventEmitter<string>();
 
@@ -28,26 +28,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   set textoFiltro(t: string) {
     this._textoFiltro = t;
-
-    if (t) {
-      this.cursos = this.filtrarCursos(t);
-    } else {
-      this.coursesService.getCourses().subscribe((cursos: Curso[]) => {
-        this.cursos = cursos;
-      });
-    }
   }
-
-  constructor(private coursesService: CoursesService) {}
 
   get textoFiltro() {
     return this._textoFiltro;
-  }
-
-  ngOnInit() {
-    this.coursesService
-      .getCourses()
-      .subscribe((cursos: Curso[]) => (this.cursos = cursos));
   }
 
   ngAfterViewInit() {
@@ -55,13 +39,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.filtro.nativeElement.addEventListener('input', () => {
       this.searchTextChanged();
     });
-  }
-
-  filtrarCursos(text: string) {
-    return this.cursos.filter(
-      (curso: Curso) =>
-        curso.name.toLowerCase().indexOf(text.toLowerCase()) >= 0
-    );
   }
 
   searchTextChanged() {

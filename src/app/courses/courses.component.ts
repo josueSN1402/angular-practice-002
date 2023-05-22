@@ -20,6 +20,7 @@ export class CoursesComponent implements OnInit {
   anchoImagen: string = '40px';
 
   cursos: Curso[] = [];
+  cursosFiltrados: Curso[] = [];
   textoFiltro: string = '';
   mensajeError: string = '';
 
@@ -27,17 +28,24 @@ export class CoursesComponent implements OnInit {
     // this.cursos = this.coursesService.getCourses();
   }
 
-  ngOnInit() {
+  getCourses() {
     this.coursesService
       .getCourses()
       .pipe(
-        tap((cursos) => console.log('Cursos ', cursos)),
+        tap((cursos) => console.log('Cursos ', cursos)), // Forma de mostrar datos en consola cada que se producen cambios para hacer debugging
         catchError((err) => {
           this.mensajeError = err;
           return EMPTY;
         })
       )
-      .subscribe((cursos: Curso[]) => (this.cursos = cursos));
+      .subscribe((cursos: Curso[]) => {
+        this.cursos = cursos;
+        this.cursosFiltrados = cursos;
+      });
+  }
+
+  ngOnInit() {
+    this.getCourses();
   }
 
   onEditCurso(curso: Curso) {
@@ -55,11 +63,9 @@ export class CoursesComponent implements OnInit {
     this.textoFiltro = text;
 
     if (!text) {
-      this.coursesService.getCourses().subscribe((cursos: Curso[]) => {
-        this.cursos = cursos;
-      });
+      this.cursosFiltrados = this.cursos;
     } else {
-      this.cursos = this.cursos.filter((curso) => {
+      this.cursosFiltrados = this.cursos.filter((curso) => {
         return (
           curso.name.toLowerCase().includes(text.toLowerCase()) ||
           curso.description.toLowerCase().includes(text.toLowerCase())
