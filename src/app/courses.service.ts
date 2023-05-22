@@ -23,6 +23,8 @@ export class CoursesService {
       console.log('Error Status: ', err.status);
       console.log('Error: ', err.error);
     }
-    return throwError('Hubo un problema al obtener los datos. Intente más tarde');
+    return throwError(
+      'Hubo un problema al obtener los datos. Intente más tarde'
+    );
   }
 }

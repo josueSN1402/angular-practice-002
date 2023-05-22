@@ -8,6 +8,7 @@ import {
 import { Curso } from '../curso';
 import { Router } from '@angular/router';
 import { CoursesService } from '../courses.service';
+import { EMPTY, catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'pa-courses',
@@ -20,6 +21,7 @@ export class CoursesComponent implements OnInit {
 
   cursos: Curso[] = [];
   textoFiltro: string = '';
+  mensajeError: string = '';
 
   constructor(private router: Router, private coursesService: CoursesService) {
     // this.cursos = this.coursesService.getCourses();
@@ -28,6 +30,13 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
     this.coursesService
       .getCourses()
+      .pipe(
+        tap((cursos) => console.log('Cursos ', cursos)),
+        catchError((err) => {
+          this.mensajeError = err;
+          return EMPTY;
+        })
+      )
       .subscribe((cursos: Curso[]) => (this.cursos = cursos));
   }
 

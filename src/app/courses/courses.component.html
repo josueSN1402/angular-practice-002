@@ -31,8 +31,10 @@
             </td>
             <td>{{ curso.name }}</td>
             <td class="col-m-280px">{{ curso.description }}</td>
-            <td class="col-m-150px">{{ curso.startDate | date : "fullDate" }}</td>
-            <td>{{ curso.price | currency : "S/ " }}</td>
+            <td class="col-m-150px">
+              {{ curso.startDate | date : 'fullDate' }}
+            </td>
+            <td>{{ curso.price | currency : 'S/ ' }}</td>
             <td>{{ curso.rating }}</td>
             <td>
               <pa-course-action
@@ -47,10 +49,13 @@
     </div>
   </div>
   <div
-    *ngIf="!cursos || cursos.length === 0"
-    class="alert alert-info"
+    *ngIf="(!cursos && !mensajeError) || (cursos.length === 0 && !mensajeError)"
+    class="alert alert-info m-2"
     role="alert"
   >
     No existen cursos disponibles. Intente más tarde
+  </div>
+  <div *ngIf="mensajeError" class="alert alert-danger m-2" role="alert">
+    {{ mensajeError }}
   </div>
 </div>
