@@ -12,7 +12,7 @@
           id="name"
           placeholder="Ingrese Nombre"
           name="name"
-          [(ngModel)]="nombre"
+          [(ngModel)]="model.name"
           #name="ngModel"
           required
         />
@@ -25,7 +25,7 @@
           id="description"
           placeholder="Descripción"
           name="description"
-          [(ngModel)]="descripcion"
+          [(ngModel)]="model.description"
           #description="ngModel"
           required
         />
@@ -38,7 +38,7 @@
           id="price"
           placeholder="Precio"
           name="price"
-          [(ngModel)]="precio"
+          [(ngModel)]="model.price"
           #price="ngModel"
           required
         />
@@ -51,7 +51,7 @@
           id="url"
           placeholder="URL de imagen"
           name="url"
-          [(ngModel)]="urlImagen"
+          [(ngModel)]="model.imageUrl"
           #url="ngModel"
           required
         />
@@ -65,7 +65,9 @@
         />
         <label class="form-check-label" for="active">Curso Activo</label>
       </div>
-      <button type="submit" class="btn btn-primary">Crear Curso</button>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+        Crear Curso
+      </button>
     </form>
   </div>
   <div>
