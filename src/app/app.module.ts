@@ -9,6 +9,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseActionComponent } from './course-action/course-action.component';
 import { CourseEditComponent } from './course-edit/course-edit.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CourseAddComponent } from './course-add/course-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CourseActionComponent,
     CourseEditComponent,
     NavbarComponent,
+    CourseAddComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [],

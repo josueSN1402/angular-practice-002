@@ -51,12 +51,15 @@ export class CoursesComponent implements OnInit {
   onEditCurso(curso: Curso) {
     console.log('[Courses] Edit', curso);
     const id = curso.id;
-    this.router.navigate(['/course', id]);
+    this.router.navigate(['/course/edit/', id]);
   }
 
   onDeleteCurso(curso: Curso) {
     console.log('[Courses] Delete', curso);
-    this.cursos = this.cursos.filter((c: Curso) => c.id !== curso.id);
+    this.cursosFiltrados = this.cursosFiltrados.filter(
+      (c: Curso) => c.id !== curso.id
+    );
+    this.cursos = this.cursosFiltrados;
   }
 
   onSearchTextChanged(text: string) {
