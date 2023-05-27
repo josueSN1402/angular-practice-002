@@ -50,7 +50,13 @@
           [(ngModel)]="textoFiltro"
           name="filtro"
         />
-        <button class="btn btn-outline-light col-md-5" type="submit">Nuevo Curso</button>
+        <button
+          [routerLink]="['/course/add']"
+          class="btn btn-outline-light col-md-5"
+          type="button"
+        >
+          Nuevo Curso
+        </button>
       </form>
     </div>
   </div>
