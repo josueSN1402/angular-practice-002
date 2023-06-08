@@ -1,0 +1,129 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Nuevo Curso (Formulario Reactivo)</h1>
+  </div>
+  <div class="card-body">
+    <form class="px-5" [formGroup]="courseAddForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Ingrese Nombre"
+          name="name"
+          minlength="10"
+          [formControlName]="'name'"
+        />
+        <div
+          *ngIf="
+            courseAddForm.get('name')?.invalid &&
+            (courseAddForm.get('name')?.dirty ||
+              courseAddForm.get('name')?.touched)
+          "
+        >
+          <div
+            *ngIf="courseAddForm.get('name')?.getError('required')"
+            class="my-1 alert alert-danger"
+          >
+            Nombre es requerido
+          </div>
+          <div
+            *ngIf="courseAddForm.get('name')?.getError('minlength')"
+            class="my-1 alert alert-danger"
+          >
+            El nombre debe tener al menos 10 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Descripción*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          placeholder="Descripción"
+          name="description"
+          minlength="10"
+          [formControlName]="'description'"
+        />
+        <div
+          *ngIf="
+            courseAddForm.get('description')?.invalid &&
+            (courseAddForm.get('description')?.dirty ||
+              courseAddForm.get('description')?.touched)
+          "
+        >
+          <div
+            *ngIf="courseAddForm.get('description')?.getError('required')"
+            class="my-1 alert alert-danger"
+          >
+            Descripción es requerida
+          </div>
+          <div
+            *ngIf="courseAddForm.get('description')?.getError('minlength')"
+            class="my-1 alert alert-danger"
+          >
+            La descripción debe tener al menos 10 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Precio*</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          placeholder="Precio"
+          name="price"
+          min="10"
+          [formControlName]="'price'"
+        />
+        <div *ngIf="price?.invalid && (price?.dirty || price?.touched)">
+          Precio es requerido
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="url" class="form-label">URL de imagen*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="url"
+          placeholder="URL de imagen"
+          name="url"
+          [formControlName]="'url'"
+        />
+        <div
+          *ngIf="
+            courseAddForm.get('url')?.invalid &&
+            (courseAddForm.get('url')?.dirty ||
+              courseAddForm.get('url')?.touched)
+          "
+        >
+          <div
+            *ngIf="courseAddForm.get('url')?.getError('required')"
+            class="my-1 alert alert-danger"
+          >
+            URL para la imagen es requerida
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="active"
+          name="activo"
+        />
+        <label class="form-check-label" for="active">Curso Activo</label>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="courseAddForm.invalid || courseAddForm.untouched"
+      >
+        Crear Curso
+      </button>
+    </form>
+  </div>
+</div>
