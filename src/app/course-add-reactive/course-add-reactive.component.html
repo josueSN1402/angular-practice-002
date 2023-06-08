@@ -80,7 +80,18 @@
           [formControlName]="'price'"
         />
         <div *ngIf="price?.invalid && (price?.dirty || price?.touched)">
-          Precio es requerido
+          <div
+            *ngIf="price?.errors?.['required']"
+            class="my-1 alert alert-danger"
+          >
+            Precio es requerido
+          </div>
+          <div
+            *ngIf="price?.errors?.['minPrice']"
+            class="my-1 alert alert-danger"
+          >
+            El precio debe ser mayor a 10
+          </div>
         </div>
       </div>
       <div class="mb-3">

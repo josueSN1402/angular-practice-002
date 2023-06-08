@@ -25,7 +25,7 @@ export class CourseAddReactiveComponent implements OnInit {
         Validators.required,
         Validators.minLength(10),
       ]),
-      price: new FormControl(null, Validators.required),
+      price: new FormControl(null, [Validators.required, this.minPrice(10)]),
       url: new FormControl(null, Validators.required),
     });
   }
