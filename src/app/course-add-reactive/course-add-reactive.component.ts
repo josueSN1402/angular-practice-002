@@ -14,6 +14,10 @@ import {
 })
 export class CourseAddReactiveComponent implements OnInit {
   courseAddForm!: FormGroup;
+  priceFormControl: FormControl = new FormControl(null, [
+    Validators.required,
+    this.minPrice(10),
+  ]);
 
   ngOnInit() {
     this.courseAddForm = new FormGroup({
@@ -25,9 +29,14 @@ export class CourseAddReactiveComponent implements OnInit {
         Validators.required,
         Validators.minLength(10),
       ]),
-      price: new FormControl(null, [Validators.required, this.minPrice(10)]),
+      price: this.priceFormControl,
       url: new FormControl(null, Validators.required),
     });
+    // this.courseAddForm.statusChanges.subscribe((value) => console.log(value));
+    this.priceFormControl.valueChanges.subscribe((value) => console.log(value));
+    this.priceFormControl.statusChanges.subscribe((status) =>
+      console.log(status)
+    );
   }
 
   onSubmit() {
