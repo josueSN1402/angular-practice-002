@@ -5,7 +5,7 @@
   <div class="card-body">
     <form class="px-5" #formAdd="ngForm">
       <div class="mb-3">
-        <label for="name" class="form-label">Nombre</label>
+        <label for="name" class="form-label">Nombre*</label>
         <input
           type="text"
           class="form-control"
@@ -14,11 +14,26 @@
           name="name"
           [(ngModel)]="model.name"
           #name="ngModel"
+          minlength="10"
           required
         />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div
+            *ngIf="name.errors?.['required']"
+            class="my-1 alert alert-danger"
+          >
+            Nombre es requerido
+          </div>
+          <div
+            *ngIf="name.errors?.['minlength']"
+            class="my-1 alert alert-danger"
+          >
+            El nombre debe tener al menos 10 caracteres.
+          </div>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="description" class="form-label">Descripción</label>
+        <label for="description" class="form-label">Descripción*</label>
         <input
           type="text"
           class="form-control"
@@ -27,11 +42,30 @@
           name="description"
           [(ngModel)]="model.description"
           #description="ngModel"
+          minlength="10"
           required
         />
+        <div
+          *ngIf="
+            description.invalid && (description.dirty || description.touched)
+          "
+        >
+          <div
+            *ngIf="description.errors?.['required']"
+            class="my-1 alert alert-danger"
+          >
+            Descripción es requerida
+          </div>
+          <div
+            *ngIf="description.errors?.['minlength']"
+            class="my-1 alert alert-danger"
+          >
+            La descripción debe tener al menos 10 caracteres.
+          </div>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="price" class="form-label">Precio</label>
+        <label for="price" class="form-label">Precio*</label>
         <input
           type="number"
           class="form-control"
@@ -40,11 +74,18 @@
           name="price"
           [(ngModel)]="model.price"
           #price="ngModel"
+          min="10"
           required
         />
+        <div
+          *ngIf="price.invalid && (price.dirty || price.touched)"
+          class="my-1 alert alert-danger"
+        >
+          Precio es requerido
+        </div>
       </div>
       <div class="mb-3">
-        <label for="url" class="form-label">URL de imagen</label>
+        <label for="url" class="form-label">URL de imagen*</label>
         <input
           type="text"
           class="form-control"
@@ -55,6 +96,12 @@
           #url="ngModel"
           required
         />
+        <div
+          *ngIf="url.invalid && (url.dirty || url.touched)"
+          class="my-1 alert alert-danger"
+        >
+          URL de imagen es requerida
+        </div>
       </div>
       <div class="mb-3 form-check">
         <input
@@ -65,7 +112,12 @@
         />
         <label class="form-check-label" for="active">Curso Activo</label>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="formAdd.form.invalid || formAdd.form.untouched"
+      >
         Crear Curso
       </button>
     </form>
